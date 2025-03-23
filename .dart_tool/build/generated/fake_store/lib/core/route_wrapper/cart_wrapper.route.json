@@ -1,0 +1,1 @@
+{"routes":[{"name":null,"pathParams":[],"pageType":{"import":"package:fake_store/core/route_wrapper/cart_wrapper.dart","name":"CartWrapperPage","isNullable":false,"isRecordType":false},"className":"CartWrapperPage","parameters":[],"hasWrappedRoute":false,"hasConstConstructor":true,"deferredLoading":null}],"inputPath":"lib/core/route_wrapper/cart_wrapper.dart","inputHash":0}

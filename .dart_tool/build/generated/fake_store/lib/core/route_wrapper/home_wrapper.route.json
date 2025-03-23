@@ -1,0 +1,1 @@
+{"routes":[{"name":null,"pathParams":[],"pageType":{"import":"package:fake_store/core/route_wrapper/home_wrapper.dart","name":"HomeWrapperPage","isNullable":false,"isRecordType":false},"className":"HomeWrapperPage","parameters":[],"hasWrappedRoute":false,"hasConstConstructor":true,"deferredLoading":null}],"inputPath":"lib/core/route_wrapper/home_wrapper.dart","inputHash":0}
