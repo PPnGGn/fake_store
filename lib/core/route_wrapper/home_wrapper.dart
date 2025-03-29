@@ -15,7 +15,7 @@ class HomeWrapperPage extends StatelessWidget {
       routes: const [
         ProductsRoute(),
         CartRoute(),
-        SettingsRoute(),
+        ProfileRoute(),
       ],
       transitionBuilder: (context,child,animation) => FadeTransition(
         opacity: animation,
@@ -32,19 +32,18 @@ class HomeWrapperPage extends StatelessWidget {
         return Scaffold(
           body: child,
           bottomNavigationBar: BottomNavigationBar(
-            fixedColor: Colors.black,
-            backgroundColor: Colors.green,
-            unselectedItemColor: Colors.black26,
+            backgroundColor: const Color(0xFF1A1A1A), // Тёмно-серый фон
+            selectedItemColor: const Color(0xFFBB86FC), // Активный элемент (фиолетовый)
+            unselectedItemColor: Colors.white60, // Неактивные элементы (серые)
             currentIndex: tabsRouter.activeIndex,
-          type: BottomNavigationBarType.fixed,
+            type: BottomNavigationBarType.fixed,
             onTap: (index) {
-              // here we switch between tabs
               tabsRouter.setActiveIndex(index);
             },
-            items: [
+            items: const [
               BottomNavigationBarItem(label: 'Products', icon: Icon(Icons.store)),
               BottomNavigationBarItem(label: 'Cart', icon: Icon(Icons.shopping_cart)),
-              BottomNavigationBarItem(label: 'Settings', icon: Icon(Icons.settings)),
+              BottomNavigationBarItem(label: 'Profile', icon: Icon(Icons.person)),
             ],
           ),
         );

@@ -1,1 +1,0 @@
-{"routes":[{"name":null,"pathParams":[],"pageType":{"import":"package:fake_store/ui/products/products_page.dart","name":"ProductsPage","isNullable":false,"isRecordType":false},"className":"ProductsPage","parameters":[],"hasWrappedRoute":false,"hasConstConstructor":true,"deferredLoading":null}],"inputPath":"lib/ui/products/products_page.dart","inputHash":0}

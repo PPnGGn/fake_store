@@ -1,0 +1,1 @@
+{"routes":[{"name":null,"pathParams":[],"pageType":{"import":"package:fake_store/ui/profile/settings/settings_page.dart","name":"SettingsPage","isNullable":false,"isRecordType":false},"className":"SettingsPage","parameters":[],"hasWrappedRoute":false,"hasConstConstructor":true,"deferredLoading":null}],"inputPath":"lib/ui/profile/settings/settings_page.dart","inputHash":0}

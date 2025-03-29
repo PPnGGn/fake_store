@@ -506,10 +506,10 @@
       "languageVersion": "3.6"
     }
   ],
-  "generated": "2025-03-22T13:57:46.971607Z",
+  "generated": "2025-03-29T10:53:03.650401Z",
   "generator": "pub",
-  "generatorVersion": "3.7.0",
+  "generatorVersion": "3.7.2",
   "flutterRoot": "file:///Users/ppnggn/dev/flutter",
-  "flutterVersion": "3.29.1",
+  "flutterVersion": "3.29.2",
   "pubCache": "file:///Users/ppnggn/.pub-cache"
 }
