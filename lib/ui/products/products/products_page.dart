@@ -46,7 +46,7 @@ class _ProductsPageState extends State<ProductsPage> {
 }
 
 class _ProductsCard extends StatelessWidget {
-  const _ProductsCard({super.key});
+  const _ProductsCard();
 
   @override
   Widget build(BuildContext context) {
@@ -81,14 +81,12 @@ class _ProductsCard extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 12),
+           const Spacer(),
             const Text(
               'product.title',
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-              ),
+
             ),
             const Spacer(),
             Row(
@@ -96,10 +94,7 @@ class _ProductsCard extends StatelessWidget {
               children: [
                 const Text(
                   '\$222',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.greenAccent,
-                  ),
+
                 ),
                 IconButton(
                   onPressed: () {},

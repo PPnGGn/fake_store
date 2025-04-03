@@ -1,0 +1,1 @@
+ /Users/ppnggn/dev/fake_store/.dart_tool/flutter_build/9ef28ac76c1284e1a1756b00497363e8/native_assets.json: 

@@ -1,42 +1,47 @@
+import 'package:fake_store/repositories/settings/settings_repository.dart';
+import 'package:fake_store/ui/profile/settings/cubit/settings_cubit.dart';
+import 'package:fake_store/utils/extensions%20/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/router/app_router.dart';
 
-void main() {
-  runApp( MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  runApp(MyApp(preferences: prefs,));
 }
 
-class MyApp extends StatelessWidget {
-   MyApp({super.key});
+class MyApp extends StatefulWidget {
+  MyApp({super.key, required this.preferences});
+  final SharedPreferences preferences;
 
-  final _appRouter = AppRouter();
   @override
-  Widget build(BuildContext context){
-    return MaterialApp.router(
-      theme: ThemeData(
-        useMaterial3: true,
-        fontFamily: 'Montserrat',
-        brightness: Brightness.dark,
-        scaffoldBackgroundColor: const Color(0xFF121212),
-        cardColor: const Color(0xFF1E1E1E),
-        colorScheme: const ColorScheme.dark(
-          primary: Color(0xFFBB86FC),
-          secondary: Color(0xFF03DAC6),
-          surface: Color(0xFF1E1E1E),
-          error: Color(0xFFCF6679),
-        ),
-        appBarTheme: const AppBarTheme(
-          surfaceTintColor: Color(0xFF121212), // цвет аппбара, когда под ним что-то есть
-          backgroundColor: Color(0xFF121212),
-          foregroundColor: Colors.white,
-          elevation: 0,
-        ),
-        textTheme: const TextTheme(
-          bodyLarge: TextStyle(color: Colors.white),
-          bodyMedium: TextStyle(color: Colors.white70),
-        ),
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final _appRouter = AppRouter();
+
+  @override
+  Widget build(BuildContext context) {
+    final settingsRepository = SettingsRepository(
+      preferences: widget.preferences,
+    );
+    return BlocProvider(
+      create: (context) => SettingsCubit(settingsRepository: settingsRepository),
+      child: BlocBuilder<SettingsCubit, SettingsState>(
+        builder: (context, state) {
+          return MaterialApp.router(
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: state == const SettingsState.dark() ? ThemeMode.dark : ThemeMode.light,
+            routerConfig: _appRouter.config(),
+          );
+        },
       ),
-      routerConfig: _appRouter.config(),
     );
   }
 }

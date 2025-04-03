@@ -32,11 +32,10 @@ class HomeWrapperPage extends StatelessWidget {
         return Scaffold(
           body: child,
           bottomNavigationBar: BottomNavigationBar(
-            backgroundColor: const Color(0xFF1A1A1A), // Тёмно-серый фон
-            selectedItemColor: const Color(0xFFBB86FC), // Активный элемент (фиолетовый)
-            unselectedItemColor: Colors.white60, // Неактивные элементы (серые)
             currentIndex: tabsRouter.activeIndex,
             type: BottomNavigationBarType.fixed,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
             onTap: (index) {
               tabsRouter.setActiveIndex(index);
             },
