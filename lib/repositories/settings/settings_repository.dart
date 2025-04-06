@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SettingsRepository implements SettingsRepositoryInterface {
   SettingsRepository({required this.preferences});
 
-  final SharedPreferences preferences;
+  final SharedPreferencesWithCache preferences;
 
   static const _isDarkThemeSelectedKey = 'dark_theme_selected';
 
