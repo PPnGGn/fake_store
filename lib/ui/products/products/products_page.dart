@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:fake_store/utils/extensions%20/app_colors.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
@@ -9,22 +10,17 @@ class ProductsPage extends StatefulWidget {
   State<ProductsPage> createState() => _ProductsPageState();
 }
 
+
+
 class _ProductsPageState extends State<ProductsPage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text("Продукты"),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.shopping_cart_outlined),
-            onPressed: () {
-              // TODO: перейти в корзину
-            },
-          ),
-        ],
+        //centerTitle: true,
       ),
       body: SafeArea(
         child: GridView.builder(
@@ -81,28 +77,21 @@ class _ProductsCard extends StatelessWidget {
                 ),
               ),
             ),
-           const Spacer(),
-            const Text(
+            const Spacer(),
+            Text(
               'product.title',
               maxLines: 2,
+              style: Theme.of(context).textTheme.bodyMedium,
               overflow: TextOverflow.ellipsis,
-
             ),
             const Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  '\$222',
-
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.favorite_border),
-                  color: theme.iconTheme.color,
-                  tooltip: "Добавить в избранное",
-                ),
-              ],
+            const Text(
+              '\$222',
+              style: TextStyle(
+                color: Colors.green,
+                fontSize: 16,
+                fontFamily: 'Montserrat',
+              ),
             )
           ],
         ),

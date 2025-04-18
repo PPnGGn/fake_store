@@ -80,10 +80,7 @@ class SettingsPage extends StatelessWidget {
                   },
                   icon: const Icon(Icons.logout),
                   label: const Text("Выйти из аккаунта"),
-                  style: ElevatedButton.styleFrom(
 
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                  ),
                 ),
               )
             ],

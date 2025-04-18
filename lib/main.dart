@@ -9,19 +9,21 @@ import 'core/router/app_router.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final SharedPreferencesWithCache prefs =
-  await SharedPreferencesWithCache.create(
+  final SharedPreferencesWithCache prefs = await SharedPreferencesWithCache.create(
     cacheOptions: const SharedPreferencesWithCacheOptions(
-      // When an allowlist is included, any keys that aren't included cannot be used.
-      //allowList: <String>{'repeat', 'action'},
-    ),
+        // When an allowlist is included, any keys that aren't included cannot be used.
+        //allowList: <String>{'repeat', 'action'},
+        ),
   );
 
-  runApp(MyApp(preferences: prefs,));
+  runApp(MyApp(
+    preferences: prefs,
+  ));
 }
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key, required this.preferences});
+
   final SharedPreferencesWithCache preferences;
 
   @override
