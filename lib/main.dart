@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'core/common/injector.dart';
 import 'core/router/app_router.dart';
 
 Future<void> main() async {
@@ -16,6 +17,7 @@ Future<void> main() async {
         ),
   );
 
+  await configureDependencies();
   runApp(MyApp(
     preferences: prefs,
   ));

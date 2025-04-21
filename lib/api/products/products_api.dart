@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:fake_store/entities/dto/response/response_models.dart';
+import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'products_api.g.dart';
+
 
 @RestApi(baseUrl: 'https://fakestoreapi.com/')
 abstract class ProductsApi {

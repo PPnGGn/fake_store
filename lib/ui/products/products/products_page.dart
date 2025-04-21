@@ -1,6 +1,11 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:fake_store/utils/extensions%20/app_colors.dart';
+import 'package:fake_store/entities/dto/response/response_models.dart';
+import 'package:fake_store/ui/products/products/cubit/products_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+
+import 'cubit/products_state.dart';
 
 @RoutePage()
 class ProductsPage extends StatefulWidget {
@@ -10,30 +15,46 @@ class ProductsPage extends StatefulWidget {
   State<ProductsPage> createState() => _ProductsPageState();
 }
 
-
-
 class _ProductsPageState extends State<ProductsPage> {
+  @override
+  void initState() {
+    GetIt.instance.get<ProductsCubit>().fetchProducts();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final pageController = GetIt.instance.get<ProductsCubit>();
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text("Продукты"),
-        //centerTitle: true,
       ),
       body: SafeArea(
-        child: GridView.builder(
-          padding: const EdgeInsets.all(10),
-          itemCount: 10,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-            childAspectRatio: 0.7,
-          ),
-          itemBuilder: (context, index) {
-            return const _ProductsCard();
+        child: BlocBuilder<ProductsCubit, ProductsState>(
+          bloc: pageController,
+          builder: (context, state) {
+            return state.map(
+              initial: (_) => Center(child: Text("Initializing")),
+              loading: (_) => Center(child: Text("Loading")),
+              success: (successState) => GridView.builder(
+                padding: const EdgeInsets.all(10),
+                itemCount: successState.products.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  childAspectRatio: 0.7,
+                ),
+                itemBuilder: (context, index) {
+                  return _ProductsCard(
+                    onTap: (product) => pageController.onTap(product, context),
+                    productResponse: successState.products[index],
+                  );
+                },
+              ),
+              failure: (_) => Center(child: Text("Error")),
+            );
           },
         ),
       ),
@@ -42,14 +63,17 @@ class _ProductsPageState extends State<ProductsPage> {
 }
 
 class _ProductsCard extends StatelessWidget {
-  const _ProductsCard();
+  const _ProductsCard({required this.productResponse, required this.onTap});
+
+  final ProductsResponse productResponse;
+  final Function(ProductsResponse) onTap;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     return GestureDetector(
-      onTap: () => AutoRouter.of(context).navigatePath('product_card'),
+      onTap: () => onTap(productResponse),
       child: Container(
         decoration: BoxDecoration(
           color: theme.cardColor,
@@ -70,7 +94,7 @@ class _ProductsCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Image.network(
-                  "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+                  productResponse.image,
                   width: 120,
                   height: 160,
                   fit: BoxFit.cover,
@@ -79,14 +103,14 @@ class _ProductsCard extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              'product.title',
+              productResponse.title,
               maxLines: 2,
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: theme.textTheme.bodyMedium,
               overflow: TextOverflow.ellipsis,
             ),
             const Spacer(),
-            const Text(
-              '\$222',
+            Text(
+              '\$${productResponse.price}',
               style: TextStyle(
                 color: Colors.green,
                 fontSize: 16,

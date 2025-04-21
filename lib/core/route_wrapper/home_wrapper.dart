@@ -12,10 +12,10 @@ class HomeWrapperPage extends StatelessWidget {
       // list of your tab routes
       // routes used here must be declared as children
       // routes of /dashboard
-      routes: const [
-        ProductsRoute(),
-        CartRoute(),
-        ProfileRoute(),
+      routes: [
+        const ProductsRoute(),
+        const CartRoute(),
+        const ProfileRoute(),
       ],
       transitionBuilder: (context,child,animation) => FadeTransition(
         opacity: animation,

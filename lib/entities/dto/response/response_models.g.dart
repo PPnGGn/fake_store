@@ -6,8 +6,8 @@ part of 'response_models.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_CartsResponse _$CartsResponseFromJson(Map<String, dynamic> json) =>
-    _CartsResponse(
+_$CartsResponseImpl _$$CartsResponseImplFromJson(Map<String, dynamic> json) =>
+    _$CartsResponseImpl(
       id: (json['id'] as num).toInt(),
       userId: (json['userId'] as num).toInt(),
       products: (json['products'] as List<dynamic>)
@@ -15,15 +15,16 @@ _CartsResponse _$CartsResponseFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$CartsResponseToJson(_CartsResponse instance) =>
+Map<String, dynamic> _$$CartsResponseImplToJson(_$CartsResponseImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,
       'products': instance.products,
     };
 
-_ProductsResponse _$ProductsResponseFromJson(Map<String, dynamic> json) =>
-    _ProductsResponse(
+_$ProductsResponseImpl _$$ProductsResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ProductsResponseImpl(
       id: (json['id'] as num).toInt(),
       title: json['title'] as String,
       price: json['price'] as num,
@@ -32,7 +33,8 @@ _ProductsResponse _$ProductsResponseFromJson(Map<String, dynamic> json) =>
       image: json['image'] as String,
     );
 
-Map<String, dynamic> _$ProductsResponseToJson(_ProductsResponse instance) =>
+Map<String, dynamic> _$$ProductsResponseImplToJson(
+        _$ProductsResponseImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
